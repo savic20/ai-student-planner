@@ -1,0 +1,30 @@
+COMPUTER SCIENCE 101 - INTRODUCTION TO PROGRAMMING
+Fall 2024
+
+Instructor: Dr. Jane Smith
+Email: jsmith@university.edu
+Office Hours: Tuesdays 2-4 PM
+
+COURSE DESCRIPTION:
+Introduction to programming using Python.
+
+GRADING:
+- Homework (5 assignments): 30%
+- Midterm Exam: 30%
+- Final Project: 40%
+
+SCHEDULE:
+- Homework 1: Due September 15, 2024
+- Homework 2: Due September 29, 2024
+- Homework 3: Due October 13, 2024
+- Midterm Exam: October 20, 2024
+- Homework 4: Due November 3, 2024
+- Homework 5: Due November 17, 2024
+- Final Project: Due December 10, 2024
+
+IMPORTANT DATES:
+- Thanksgiving Break: November 25-29, 2024
+- Last day of classes: December 6, 2024
+
+TEXTBOOK:
+"Python Programming for Beginners" by John Doe

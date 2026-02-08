@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  # =============================================================================
+  # PostgreSQL Database
+  # =============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: student_planner_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: planner_user
+      POSTGRES_PASSWORD: planner_pass
+      POSTGRES_DB: student_planner
+    ports:
+      - "5432:5432"  # Expose to host machine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql  # Optional init script
+    networks:
+      - planner_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U planner_user -d student_planner"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =============================================================================
+  # Backend API (FastAPI) - Optional, can run locally too
+  # =============================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: student_planner_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://planner_user:planner_pass@postgres:5432/student_planner
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434  # Access host Ollama
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - ./backend/app:/app/app  # Hot reload during development
+      - ./backend/uploads:/app/uploads  # Persist uploaded files
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - planner_network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # =============================================================================
+  # Optional: pgAdmin (Database GUI)
+  # =============================================================================
+  # Uncomment to use a web-based database viewer
+  # pgadmin:
+  #   image: dpage/pgadmin4:latest
+  #   container_name: student_planner_pgadmin
+  #   restart: unless-stopped
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@planner.local
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - "5050:80"
+  #   networks:
+  #     - planner_network
+
+# =============================================================================
+# Volumes (Data Persistence)
+# =============================================================================
+volumes:
+  postgres_data:
+    driver: local
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  planner_network:
+    driver: bridge
+
+# =============================================================================
+# USAGE INSTRUCTIONS
+# =============================================================================
+# 1. Start services:
+#    docker-compose up -d
+#
+# 2. View logs:
+#    docker-compose logs -f backend
+#
+# 3. Stop services:
+#    docker-compose down
+#
+# 4. Reset database (DELETE ALL DATA):
+#    docker-compose down -v
+#
+# 5. Access database:
+#    psql -h localhost -U planner_user -d student_planner
+#    Password: planner_pass
+#
+# 6. Run backend locally (without Docker):
+#    Comment out the 'backend' service above
+#    Run: cd backend && uvicorn app.main:app --reload
