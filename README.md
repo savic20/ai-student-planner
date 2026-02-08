@@ -182,36 +182,5 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Author
-
-**Savi Chandwadkat**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Portfolio: [yourportfolio.com](https://yourportfolio.com)
-
----
-
-## Acknowledgments
-
-- [LangChain](https://github.com/langchain-ai/langchain) for agent framework
-- [Groq](https://groq.com) for fast LLM inference
-- [FastAPI](https://fastapi.tiangolo.com/) for the amazing Python framework
-- [Vercel](https://vercel.com) for frontend deployment
-
----
-
-## Support
-
-For issues and questions:
-- [GitHub Issues](https://github.com/yourusername/student-planner/issues)
-- [Discussions](https://github.com/yourusername/student-planner/discussions)
-
----
 
 <p align="center">Made with ❤️ by students, for students</p>
