@@ -11,6 +11,7 @@ python test_llm.py
 """
 
 import sys
+import pytest
 import asyncio
 from pathlib import Path
 
@@ -18,7 +19,7 @@ sys.path.append(str(Path(__file__).parent))
 
 from app.llm import get_llm_gateway, LLMMessage, MessageRole
 
-
+@pytest.mark.asyncio
 async def test_health_check():
     """Test provider health"""
     print("\n" + "="*70)
@@ -40,7 +41,7 @@ async def test_health_check():
     
     return health['groq']['available'] or (health.get('ollama') and health['ollama']['available'])
 
-
+@pytest.mark.asyncio
 async def test_simple_generation():
     """Test simple text generation"""
     print("\n" + "="*70)
@@ -71,7 +72,7 @@ async def test_simple_generation():
         print(f"\n❌ Failed: {e}")
         return False
 
-
+@pytest.mark.asyncio
 async def test_chat_with_context():
     """Test chat with conversation history"""
     print("\n" + "="*70)
@@ -113,7 +114,7 @@ async def test_chat_with_context():
         print(f"\n❌ Failed: {e}")
         return False
 
-
+@pytest.mark.asyncio
 async def test_streaming():
     """Test streaming generation"""
     print("\n" + "="*70)
@@ -142,7 +143,7 @@ async def test_streaming():
         print(f"\n\n❌ Failed: {e}")
         return False
 
-
+@pytest.mark.asyncio
 async def test_fallback():
     """Test automatic fallback"""
     print("\n" + "="*70)
