@@ -34,6 +34,7 @@ pydantic[email]
 pydantic-settings
 pydantic_core==2.41.5
 pytest
+pytest-asyncio
 python-dotenv==1.2.1
 python-jose[cryptography]
 PyYAML==6.0.3
