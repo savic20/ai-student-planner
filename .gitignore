@@ -6,29 +6,42 @@ __pycache__/
 .Python
 venv/
 env/
+ENV/
+*.egg-info/
 
-# Environment variables
+# Environment
 .env
 *.env
+.env.local
 
 # Database
 *.db
 *.sqlite
 postgres_data/
+*.sql
 
 # IDEs
 .vscode/
 .idea/
 *.swp
+*.swo
 
 # OS
 .DS_Store
 Thumbs.db
+*.log
 
-# Uploads
-uploads/
-*.pdf
-*.docx
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/node_modules/
+
+# Backend
+backend/uploads/
+backend/*.pdf
+backend/*.docx
 
 # Logs
 *.log
+logs/
