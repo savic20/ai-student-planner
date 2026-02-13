@@ -100,7 +100,7 @@ def test_insert():
         db.close()
 
 
-def test_query(user_id: int):
+def tst_query(user_id: int):
     """Test querying data"""
     print_section("TEST 4: Query Test Data")
     
@@ -210,7 +210,7 @@ def main():
         return False
     
     # Test 4: Query
-    if not test_query(user_id):
+    if not tst_query(user_id):
         print("\n❌ QUERY TEST FAILED")
         return False
     
