@@ -185,13 +185,20 @@ async def health_check():
 # ============================================================================
 # RUN APPLICATION (for development)
 # ============================================================================
+# if __name__ == "__main__":
+#     import uvicorn
+    
+#     uvicorn.run(
+#         "app.main:app",
+#         host=settings.BACKEND_HOST,
+#         port=settings.BACKEND_PORT,
+#         reload=settings.BACKEND_RELOAD,  # Auto-reload on code changes
+#         log_level=settings.LOG_LEVEL.lower()
+#     )
+
 if __name__ == "__main__":
     import uvicorn
+    import os
     
-    uvicorn.run(
-        "app.main:app",
-        host=settings.BACKEND_HOST,
-        port=settings.BACKEND_PORT,
-        reload=settings.BACKEND_RELOAD,  # Auto-reload on code changes
-        log_level=settings.LOG_LEVEL.lower()
-    )
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port)
