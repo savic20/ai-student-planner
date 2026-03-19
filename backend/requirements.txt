@@ -1,3 +1,4 @@
+alembic==1.13.1
 annotated-doc==0.0.4
 annotated-types==0.7.0
 anyio==4.12.1
@@ -18,6 +19,7 @@ jsonpatch==1.33
 jsonpointer==3.0.0
 langchain==1.2.7
 langchain-core==1.2.7
+langchain-groq==0.0.1
 langgraph==1.0.7
 langgraph-checkpoint==4.0.0
 langgraph-prebuilt==1.0.7
@@ -33,10 +35,13 @@ pydantic==2.12.5
 pydantic[email]
 pydantic-settings
 pydantic_core==2.41.5
+PyPDF2==3.0.1
 pytest
 pytest-asyncio
+python-docx==1.1.0
 python-dotenv==1.2.1
 python-jose[cryptography]
+python-multipart==0.0.6
 PyYAML==6.0.3
 requests==2.32.5
 requests-toolbelt==1.0.0

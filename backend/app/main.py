@@ -178,7 +178,10 @@ async def global_exception_handler(request, exc):
         }
     )
 
-
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+    
 # ============================================================================
 # RUN APPLICATION (for development)
 # ============================================================================
