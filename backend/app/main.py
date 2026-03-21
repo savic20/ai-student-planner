@@ -26,7 +26,11 @@ from app.config import settings
 # Import API routes
 from app.api import auth, syllabus, plans, feedback
 from app.db.database import engine, Base, check_db_connection
+# Create tables on startup (for Railway)
+from app.db.database import Base, engine
+from app.db import models
 
+Base.metadata.create_all(bind=engine)
 
 # ============================================================================
 # LOGGING SETUP
